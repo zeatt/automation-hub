@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "release_date": "2025-01-15",
+  "min_app_version": "1.0.0",
+  "scripts": [],
+  "changelog": [
+    "Первый релиз"
+  ]
+}

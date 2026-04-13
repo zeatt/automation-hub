@@ -1,0 +1,11 @@
+*.exe
+*.pyc
+__pycache__/
+config_local/
+logs/
+scripts_cache/
+.version
+.vscode/
+.idea/
+*.tmp
+*.log
