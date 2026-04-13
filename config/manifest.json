@@ -1,22 +1,67 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "release_date": "2025-01-16",
   "min_app_version": "1.0.0",
-  "scripts": [
+  "categories": [
     {
-      "name": "test.ahk",
-      "type": "ahk",
-      "description": "Тестовый скрипт (приветствие)",
-      "hotkey": "Ctrl+1"
+      "name": "📁 Таблицы",
+      "scripts": [
+        {
+          "name": "create_report.ahk",
+          "description": "📄 Создать отчёт",
+          "hotkey": "Ctrl+1"
+        },
+        {
+          "name": "find_duplicates.ahk",
+          "description": "🔍 Проверить на дубликаты",
+          "hotkey": ""
+        }
+      ]
     },
     {
-      "name": "таблица1.ahk",
-      "type": "ahk",
-      "description": "Открыть таблицу",
-      "hotkey": ""
+      "name": "📁 Сделки",
+      "subcategories": [
+        {
+          "name": "📁 Камчатка",
+          "scripts": [
+            {
+              "name": "kamchatka_deals.ahk",
+              "description": "📊 Открыть сделки Камчатка",
+              "hotkey": ""
+            }
+          ]
+        },
+        {
+          "name": "📁 Киргизия",
+          "scripts": [
+            {
+              "name": "kyrgyzstan_deals.ahk",
+              "description": "📊 Открыть сделки Киргизия",
+              "hotkey": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "📊 Статистика",
+      "scripts": [
+        {
+          "name": "show_stats.ahk",
+          "description": "📈 Посмотреть статистику",
+          "hotkey": ""
+        }
+      ]
+    },
+    {
+      "name": "✉️ Почта",
+      "scripts": [
+        {
+          "name": "send_email.ahk",
+          "description": "📧 Отправить письмо",
+          "hotkey": ""
+        }
+      ]
     }
-  ],
-  "changelog": [
-    "Добавлен скрипт таблица1"
   ]
 }
