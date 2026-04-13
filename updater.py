@@ -8,7 +8,7 @@ class GitHubUpdater:
         self.raw_url = "https://raw.githubusercontent.com/zeatt/automation-hub/main"
         self.manifest_url = f"{self.raw_url}/config/manifest.json"
         
-        self.app_dir = Path(os.environ.get('LOCALAPPDATA')) / "AutomationHub"
+        self.app_dir = Path(os.environ.get('LOCALAPPDATA')) / "TimeToTravel"
         self.cache_dir = self.app_dir / "scripts_cache"
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         
@@ -54,15 +54,29 @@ class GitHubUpdater:
             f.write(response.content)
     
     def update_all_scripts(self, manifest):
+        """Обновляет все скрипты и сохраняет манифест"""
         print(f"Обновление до версии {manifest['version']}...")
         
-        # Сохраняем манифест
-        self.save_manifest(manifest)
+        # Сохраняем манифест в кэш
+        manifest_path = self.cache_dir / "manifest.json"
+        with open(manifest_path, 'w', encoding='utf-8') as f:
+            json.dump(manifest, f, indent=2, ensure_ascii=False)
         print("  ✓ manifest.json сохранён")
         
-        # Скачиваем скрипты
-        for script in manifest.get('scripts', []):
-            script_name = script['name']
+        # Собираем все скрипты из новой структуры (categories)
+        all_scripts = []
+        for category in manifest.get("categories", []):
+            # Скрипты на уровне категории
+            for script in category.get("scripts", []):
+                all_scripts.append(script)
+            # Скрипты в подкатегориях
+            for subcat in category.get("subcategories", []):
+                for script in subcat.get("scripts", []):
+                    all_scripts.append(script)
+        
+        # Скачиваем каждый скрипт
+        for script in all_scripts:
+            script_name = script["name"]
             script_url = f"{self.raw_url}/scripts/ahk/{script_name}"
             save_path = self.cache_dir / script_name
             
@@ -72,6 +86,7 @@ class GitHubUpdater:
             except Exception as e:
                 print(f"  ✗ Ошибка: {script_name} - {e}")
         
+        self.save_version(manifest['version'])
         return True
     
     def get_script_path(self, script_name):

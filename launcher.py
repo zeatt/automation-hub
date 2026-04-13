@@ -5,11 +5,12 @@ import subprocess
 import threading
 from pathlib import Path
 from updater import GitHubUpdater
+import keyboard
 
 class AutomationLauncher:
     def __init__(self, root):
         self.root = root
-        self.root.title("Automation Hub")
+        self.root.title("Время Путешествий")
         self.root.geometry("750x550")
         
         # Инициализируем обновлятор
@@ -46,7 +47,7 @@ class AutomationLauncher:
     def setup_ui(self):
         """Создаёт интерфейс"""
         # Заголовок с версией
-        self.title_label = tk.Label(self.root, text=f"Automation Hub v{self.manifest['version']}", font=("Arial", 14, "bold"))
+        self.title_label = tk.Label(self.root, text=f"Время Путешествий v{self.manifest['version']}", font=("Arial", 14, "bold"))
         self.title_label.pack(pady=10)
         
         # Панель навигации (хлебные крошки + кнопка Назад)
