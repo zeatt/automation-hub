@@ -1,15 +1,15 @@
 {
-  "version": "1.0.0",
-  "release_date": "2025-01-15",
+  "version": "1.0.1",
+  "release_date": "2025-01-16",
   "min_app_version": "1.0.0",
   "scripts": [
     {
       "name": "test.ahk",
       "type": "ahk",
-      "description": "Тестовый скрипт"
+      "description": "Тестовый скрипт (приветствие)"
     }
   ],
   "changelog": [
-    "Первый релиз"
+    "Добавлена система автообновления"
   ]
 }
