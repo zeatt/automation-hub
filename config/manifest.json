@@ -2,7 +2,13 @@
   "version": "1.0.0",
   "release_date": "2025-01-15",
   "min_app_version": "1.0.0",
-  "scripts": [],
+  "scripts": [
+    {
+      "name": "test.ahk",
+      "type": "ahk",
+      "description": "Тестовый скрипт"
+    }
+  ],
   "changelog": [
     "Первый релиз"
   ]
