@@ -31,6 +31,11 @@ class GitHubUpdater:
         with open(self.version_file, 'w') as f:
             f.write(manifest['version'])
     
+    def save_version(self, version):
+        """Сохраняет текущую версию в файл"""
+        with open(self.version_file, 'w') as f:
+            f.write(version)
+    
     def check_for_updates(self):
         try:
             response = requests.get(self.manifest_url, timeout=10)
@@ -44,7 +49,7 @@ class GitHubUpdater:
                 return remote_manifest
             return None
         except Exception as e:
-            print(f"Ошибка: {e}")
+            print(f"Ошибка проверки обновлений: {e}")
             return None
     
     def download_file(self, url, save_path):
@@ -63,13 +68,11 @@ class GitHubUpdater:
             json.dump(manifest, f, indent=2, ensure_ascii=False)
         print("  ✓ manifest.json сохранён")
         
-        # Собираем все скрипты из новой структуры (categories)
+        # Собираем все скрипты из структуры categories
         all_scripts = []
         for category in manifest.get("categories", []):
-            # Скрипты на уровне категории
             for script in category.get("scripts", []):
                 all_scripts.append(script)
-            # Скрипты в подкатегориях
             for subcat in category.get("subcategories", []):
                 for script in subcat.get("scripts", []):
                     all_scripts.append(script)
